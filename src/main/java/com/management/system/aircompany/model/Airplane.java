@@ -3,6 +3,7 @@ package com.management.system.aircompany.model;
 import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,12 +30,12 @@ public class Airplane {
     private long flightDistance;
     @Column(name = "fuel_capacity")
     private int fuelCapacity;
-    @Enumerated
-    private AirplaneTypes type;
+    @Enumerated(value = EnumType.STRING)
+    private AirplaneType type;
     @Column(name = "created_at")
     private LocalDate createdAt;
 
-    public enum AirplaneTypes {
+    public enum AirplaneType {
         LIGHT, MEDIUM, HEAVY
     }
 }

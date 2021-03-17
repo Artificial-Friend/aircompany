@@ -1,15 +1,13 @@
 package com.management.system.aircompany.service;
 
-import com.management.system.aircompany.dto.AirCompanyRequest;
 import com.management.system.aircompany.model.AirCompany;
-import java.util.Optional;
 
 public interface AirCompanyService {
-    AirCompany create(AirCompanyRequest airCompanyRequest);
+    AirCompany save(AirCompany airCompany);
 
-    Optional<AirCompany> get(Long id);
+    AirCompany get(Long id);
 
-    AirCompany update(AirCompany airCompany);
+    void delete(Long id);
 
-    void delete(AirCompany airCompany);
+    AirCompany getByName(String name);
 }

@@ -5,7 +5,6 @@ import com.management.system.aircompany.model.Airplane;
 import java.time.LocalDate;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
-import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 import lombok.Data;
 
@@ -14,15 +13,15 @@ public class AirplaneRequest {
     @NotNull
     private String name;
     @NotNull
-    private String licenseNumber;
+    private String serialNumber;
     private String company;
     @PositiveOrZero
     private int numberOfFlights;
-    @Positive
+    @PositiveOrZero
     private long flightDistance;
     @PositiveOrZero
     private int fuelCapacity;
-    @ValueOfEnum(enumClass = Airplane.AirplaneTypes.class)
+    @ValueOfEnum(enumClass = Airplane.AirplaneType.class)
     private String airplaneType;
     @PastOrPresent
     private LocalDate createdAt;

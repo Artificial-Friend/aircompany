@@ -23,7 +23,7 @@ create table airplanes
     name              varchar(255) null,
     number_of_flights int          null,
     serial_number     varchar(255) null,
-    type              int          null,
+    type              varchar(255) null,
     company_id        bigint       null,
     constraint UK_a4byftgs5orimok1a6uwty4b3
         unique (serial_number),
@@ -31,9 +31,9 @@ create table airplanes
         foreign key (company_id) references air_companies (id)
 );
 
-INSERT INTO db.airplanes (id, created_at, flight_distance, fuel_capacity, name, number_of_flights, serial_number, type, company_id) VALUES (1, '2010-01-05', 65537, 50000, 'Bob', 0, 'A13B-C8', 2, 1);
-INSERT INTO db.airplanes (id, created_at, flight_distance, fuel_capacity, name, number_of_flights, serial_number, type, company_id) VALUES (2, '2015-06-05', 18000, 5000, 'Alice', 5, 'B75P-C2', 0, 2);
-INSERT INTO db.airplanes (id, created_at, flight_distance, fuel_capacity, name, number_of_flights, serial_number, type, company_id) VALUES (3, '2016-07-07', 33000, 30000, 'John', 200, 'A66C-CL', 1, 3);
+INSERT INTO db.airplanes (id, created_at, flight_distance, fuel_capacity, name, number_of_flights, serial_number, type, company_id) VALUES (1, '2010-01-05', 65537, 50000, 'Bob', 0, 'A13B-C8', 'HEAVY', 1);
+INSERT INTO db.airplanes (id, created_at, flight_distance, fuel_capacity, name, number_of_flights, serial_number, type, company_id) VALUES (2, '2015-06-05', 18000, 5000, 'Alice', 5, 'B75P-C2', 'LIGHT', 2);
+INSERT INTO db.airplanes (id, created_at, flight_distance, fuel_capacity, name, number_of_flights, serial_number, type, company_id) VALUES (3, '2016-07-07', 33000, 30000, 'John', 200, 'A66C-CL', 'MEDIUM', 3);
 
 create table flights
 (

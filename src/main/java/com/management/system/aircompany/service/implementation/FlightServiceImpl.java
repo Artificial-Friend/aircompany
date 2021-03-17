@@ -29,18 +29,15 @@ public class FlightServiceImpl implements FlightService {
         switch (status) {
             case DELAYED:
                 flight.setDelayStartedAt(LocalDateTime.now());
-                flight.setStatus(Flight.FlightStatus.DELAYED);
-                flightRepository.save(flight);
+                setFlightStatusAndSave(flight, status);
                 return;
             case ACTIVE:
                 flight.setCreatedAt(LocalDateTime.now());
-                flight.setStatus(Flight.FlightStatus.ACTIVE);
-                flightRepository.save(flight);
+                setFlightStatusAndSave(flight, status);
                 return;
             case COMPLETED:
                 flight.setEndedAt(LocalDateTime.now());
-                flight.setStatus(Flight.FlightStatus.COMPLETED);
-                flightRepository.save(flight);
+                setFlightStatusAndSave(flight, status);
                 return;
             default:
                 throw new RuntimeException("ERROR: Can't update flight status, "
@@ -50,7 +47,12 @@ public class FlightServiceImpl implements FlightService {
 
     @Override
     public List<Flight> findAllActiveFlightsWithFlightDurationMoreThanDay() {
-        return flightRepository.findAllActiveFlightsWithFlightDurationMoreThan(
-                LocalDateTime.now().minusHours(24));
+        return flightRepository.findAllByStatusAndBeforeLocalDateTime(
+                LocalDateTime.now().minusHours(24), Flight.FlightStatus.ACTIVE);
+    }
+
+    private void setFlightStatusAndSave(Flight flight, Flight.FlightStatus status) {
+        flight.setStatus(status);
+        flightRepository.save(flight);
     }
 }

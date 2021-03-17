@@ -13,7 +13,8 @@ public interface FlightRepository extends JpaRepository<Flight, Long> {
     @Query("FROM Flight f JOIN FETCH f.company c WHERE c.name = ?1 AND f.status = ?2")
     List<Flight> findAllByCompanyAndStatus(String companyName, Flight.FlightStatus status);
 
-    @Query("FROM Flight f WHERE f.createdAt <= :date AND f.status = 'ACTIVE'")
-    List<Flight> findAllActiveFlightsWithFlightDurationMoreThan(
-            @Param(value = "date") LocalDateTime localDateTime);
+    @Query("FROM Flight f WHERE f.createdAt <= :date AND f.status = :status")
+    List<Flight> findAllByStatusAndBeforeLocalDateTime(
+            @Param(value = "date") LocalDateTime localDateTime,
+            @Param(value = "status") Flight.FlightStatus status);
 }

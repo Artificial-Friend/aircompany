@@ -9,7 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.Data;
 
@@ -22,9 +22,9 @@ public class Flight {
     private Long id;
     @Enumerated(value = EnumType.STRING)
     private FlightStatus status;
-    @OneToOne
+    @ManyToOne
     private AirCompany company;
-    @OneToOne
+    @ManyToOne
     private Airplane airplane;
     @Column(name = "departure_country")
     private String departureCountry;
